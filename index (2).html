@@ -1,0 +1,1025 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0b0c">
+<title>Barber Booking (Copy)</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;500;600&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0b0c;--bg2:#131316;--card:#18181c;--line:#2a2a31;--gold:#c9a24b;--gold2:#e6c477;--text:#f3f1ec;--muted:#9a9aa3;--red:#b3262e;--blue:#1f3a6e;--ok:#3ba66b}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Cairo','Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+body[dir=ltr]{font-family:'Inter','Cairo',system-ui,sans-serif}
+h1,h2,h3{font-family:'Playfair Display','Cairo',serif;font-weight:700;line-height:1.25}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit}
+.hide{display:none!important}
+.container{width:100%;max-width:1080px;margin:0 auto;padding:0 18px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 26px;border-radius:6px;font-weight:700;font-size:16px;border:1px solid var(--gold);background:var(--gold);color:#111;cursor:pointer;transition:.2s}
+.btn:hover{background:var(--gold2)}
+.btn.ghost{background:transparent;color:var(--gold)}
+.btn.ghost:hover{background:rgba(201,162,75,.1)}
+.btn:disabled{opacity:.35;cursor:not-allowed}
+.btn.small{padding:8px 14px;font-size:13px}
+.btn.danger{border-color:var(--red);background:transparent;color:#ff6b73}
+.stripe{height:5px;background:repeating-linear-gradient(45deg,var(--red) 0 14px,#fff 14px 28px,var(--blue) 28px 42px,#fff 42px 56px)}
+nav{position:sticky;top:0;z-index:50;background:rgba(11,11,12,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .container{display:flex;align-items:center;justify-content:space-between;height:64px;gap:10px}
+.logo{font-family:'Playfair Display','Cairo',serif;font-size:20px;font-weight:800;display:flex;align-items:center;gap:10px;min-width:0}
+.logo span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pole{flex:none;width:12px;height:30px;border-radius:6px;border:1px solid #444;background:repeating-linear-gradient(135deg,var(--red) 0 6px,#fff 6px 12px,var(--blue) 12px 18px,#fff 18px 24px);background-size:100% 48px;animation:pole 2s linear infinite}
+@keyframes pole{to{background-position:0 48px}}
+.links{display:flex;gap:8px;align-items:center;flex:none}
+.chip{background:none;border:1px solid var(--line);color:var(--text);padding:8px 12px;border-radius:6px;cursor:pointer;font-size:14px;min-height:40px}
+.hero{padding:70px 0 64px;text-align:center;background:radial-gradient(ellipse at 50% 0%,rgba(201,162,75,.2),transparent 60%),linear-gradient(180deg,#0b0b0c,#141418)}
+.eyebrow{color:var(--gold);letter-spacing:.18em;font-size:12px;margin-bottom:12px}
+.hero h1{font-size:clamp(34px,9vw,64px);margin-bottom:14px}
+.hero h1 em{color:var(--gold);font-style:normal}
+.hero p{color:var(--muted);font-size:17px;max-width:520px;margin:0 auto 28px}
+.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+section{padding:64px 0}
+section.alt{background:var(--bg2)}
+.sec-head{text-align:center;margin-bottom:32px}
+.sec-head h2{font-size:clamp(26px,6vw,40px);margin-top:4px}
+.divider{width:60px;height:3px;background:var(--gold);margin:14px auto 0;border-radius:2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.svc{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px}
+.svc .top{display:flex;justify-content:space-between;gap:12px;align-items:baseline;margin-bottom:6px}
+.svc h3{font-size:19px}
+.price{color:var(--gold);font-weight:800;font-size:20px;white-space:nowrap}
+.svc p{color:var(--muted);font-size:14px;margin-bottom:10px}
+.dur{font-size:13px;color:var(--muted)}
+.booking{max-width:760px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px}
+.progress{display:flex;justify-content:space-between;position:relative;margin-bottom:28px}
+.progress:before{content:"";position:absolute;top:15px;inset-inline:16px;height:2px;background:var(--line)}
+.pstep{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;color:var(--muted);flex:1}
+.pstep i{font-style:normal;width:32px;height:32px;border-radius:50%;background:var(--bg2);border:2px solid var(--line);display:grid;place-items:center;font-weight:700;font-size:14px;position:relative;z-index:1}
+.pstep.on{color:var(--text)}
+.pstep.on i{border-color:var(--gold);color:var(--gold)}
+.pstep.done i{background:var(--gold);border-color:var(--gold);color:#111}
+.booking h3{font-size:20px;margin-bottom:14px}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.choice{padding:14px;border:1px solid var(--line);border-radius:10px;cursor:pointer;background:var(--bg2);text-align:start;color:var(--text);font-size:15px;display:flex;flex-direction:column;gap:2px;min-height:76px}
+.choice b{font-size:15px}
+.choice .pr{color:var(--gold);font-weight:700}
+.choice small{color:var(--muted);font-size:12px}
+.choice.sel{border-color:var(--gold);background:rgba(201,162,75,.12);box-shadow:0 0 0 1px var(--gold) inset}
+.month{font-weight:700;margin:6px 0 10px;color:var(--gold)}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:16px}
+.cal .wd{text-align:center;font-size:11px;color:var(--muted);padding-bottom:2px}
+.day{aspect-ratio:1/1;min-height:42px;display:grid;place-items:center;border-radius:10px;border:1px solid var(--line);background:var(--bg2);color:var(--text);font-size:16px;font-weight:600;cursor:pointer;padding:0}
+.day.off{opacity:.25;cursor:not-allowed;text-decoration:line-through}
+.day.sel{background:var(--gold);color:#111;border-color:var(--gold)}
+.day.today{border-color:var(--gold2)}
+.gl{font-size:13px;color:var(--muted);margin:14px 0 8px}
+.slots{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.slot{padding:12px 4px;text-align:center;border:1px solid var(--line);border-radius:8px;cursor:pointer;background:var(--bg2);color:var(--text);font-size:15px;font-weight:600}
+.slot.sel{background:var(--gold);color:#111;border-color:var(--gold)}
+input,select,textarea{width:100%;padding:14px;background:var(--bg2);border:1px solid var(--line);border-radius:8px;color:var(--text);font-size:16px;font-family:inherit;min-height:48px;-webkit-appearance:none;appearance:none}
+input[type=color]{padding:4px}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold)}
+label{display:block;font-size:13px;color:var(--muted);margin:14px 0 6px}
+.note{color:var(--muted);font-size:14px;margin-top:12px}
+.err{color:#ff7b82;margin-top:12px;font-size:14px;background:rgba(179,38,46,.12);padding:10px 12px;border-radius:8px}
+.okmsg{color:#6fdc9d;margin-top:12px;font-size:14px;background:rgba(59,166,107,.12);padding:10px 12px;border-radius:8px}
+.nav-btns{display:flex;gap:10px;margin-top:22px}
+.nav-btns .btn{flex:1}
+.nav-btns .btn.ghost{flex:0 0 auto;min-width:96px}
+.summary{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:14px;margin:8px 0}
+.summary div{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line)}
+.summary div:last-child{border:0}
+.success{text-align:center}
+.success .check{width:68px;height:68px;border-radius:50%;background:var(--ok);display:grid;place-items:center;font-size:34px;margin:0 auto 12px}
+.btn.messenger{background:#0084ff;border-color:#0084ff;color:#fff;margin-top:16px;width:100%}
+.contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.contact>a,.contact>div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px;text-align:center;display:block}
+.contact .ic{font-size:28px;margin-bottom:4px}
+.contact h3{font-size:17px;margin-bottom:4px;color:var(--gold)}
+footer{border-top:1px solid var(--line);padding:24px 0;text-align:center;color:var(--muted);font-size:13px;background:#000}
+footer a{text-decoration:underline;cursor:pointer}
+.wrap{max-width:1080px;margin:0 auto;padding:18px 14px}
+.bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;gap:10px;flex-wrap:wrap}
+#dash .tabs{flex-wrap:wrap;overflow:visible}
+.tabs{display:flex;gap:8px;overflow-x:auto;margin-bottom:16px;padding-bottom:4px}
+.tab{flex:none;padding:10px 16px;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:8px;cursor:pointer;font-size:15px}
+.tab.on{background:var(--gold);color:#111;border-color:var(--gold);font-weight:700}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;margin-bottom:16px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:start;vertical-align:middle}
+th{color:var(--muted);font-weight:600;white-space:nowrap}
+.row2{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.pill{padding:3px 10px;border-radius:20px;font-size:12px;white-space:nowrap}
+.confirmed{background:rgba(201,162,75,.2);color:var(--gold2)}
+.completed{background:rgba(59,166,107,.2);color:#6fdc9d}
+.cancelled{background:rgba(179,38,46,.2);color:#ff7b82}
+.days{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
+.days label{display:flex;align-items:center;gap:6px;margin:0;font-size:14px;color:var(--text)}
+.days input{width:auto;min-height:0}
+.tag{display:inline-flex;gap:6px;align-items:center;background:var(--bg2);border:1px solid var(--line);padding:4px 10px;border-radius:20px;margin:4px;font-size:13px}
+.tag button{background:none;border:0;color:#ff7b82;cursor:pointer;font-size:14px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:16px}
+.kpis>div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px}
+.kpis b{display:block;font-size:24px;color:var(--gold)}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.only-d{display:inline}
+.auth{max-width:420px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
+.auth .tabs{margin-bottom:6px}
+.auth .tab{flex:1;text-align:center}
+.center{min-height:60vh;display:grid;place-items:center;text-align:center;padding:24px;color:var(--muted)}
+.code{background:#000;border:1px solid var(--line);border-radius:8px;padding:12px;font-family:ui-monospace,Menlo,monospace;font-size:12px;direction:ltr;text-align:left;white-space:pre-wrap;word-break:break-all;max-height:260px;overflow:auto;color:#cfe8ff}
+.steps{padding-inline-start:22px;line-height:2}
+.steps li{margin-bottom:8px}
+.toast{position:fixed;inset-inline:14px;bottom:18px;z-index:99;background:var(--ok);color:#06210f;padding:14px;border-radius:10px;font-weight:700;text-align:center}
+@media(max-width:640px){
+  .container{padding:0 14px}
+  section{padding:48px 0}
+  .hero{padding:52px 0 48px}
+  .booking{padding:18px 14px;border-radius:12px}
+  .grid{grid-template-columns:1fr}
+  .only-d{display:none}
+  .choices{grid-template-columns:1fr}
+  .slots{grid-template-columns:repeat(3,1fr)}
+  .logo{font-size:17px}
+  .pstep{font-size:11px}
+  .summary div{font-size:15px}
+}
+</style>
+</head>
+<body>
+<div id="loading" class="center"><div id="loadMsg">… جارٍ التحميل</div></div>
+
+<!-- ============ شاشة الإعداد (تظهر فقط قبل لصق إعدادات Firebase) ============ -->
+<div id="setup" class="hide"><div class="stripe"></div><div class="wrap">
+  <h2 style="margin:18px 0 6px">🔧 إعداد الموقع (مرة واحدة فقط)</h2>
+  <p class="note" style="margin-top:0">الحجوزات تُحفظ في Firebase (من Google، مجاني) حتى تبقى ولا تضيع ويشوفها كل حلاق من أي جهاز.</p>
+  <div class="panel"><ol class="steps">
+    <li>ادخل <b dir="ltr">console.firebase.google.com</b> بحساب Google ثم <b>Add project</b> وسمّه أي اسم (تقدر توقف Google Analytics).</li>
+    <li>من القائمة: <b>Build ← Authentication ← Get started</b> ثم فعّل <b>Email/Password</b> واحفظ.</li>
+    <li>من القائمة: <b>Build ← Firestore Database ← Create database</b> ثم اختر <b>Production mode</b> وأي منطقة.</li>
+    <li>داخل Firestore افتح تبويب <b>Rules</b>، امسح كل شيء والصق القواعد أدناه ثم <b>Publish</b>.</li>
+    <li>ارجع لصفحة المشروع (⚙ Project settings) ثم <b>Your apps ← أيقونة &lt;/&gt; (Web)</b> وسجّل التطبيق، وانسخ قيمة <b>firebaseConfig</b>.</li>
+    <li>في هذا الملف (index.html) ابحث عن <b>const CFG</b> في أول السكربت واستبدل القيم بقيمك، واكتب بريدك في <b>OWNER_EMAIL</b> (أنت المسؤول)، ثم احفظ وأعد فتح الملف.</li>
+    <li><b>إشعارات البريد:</b> أنشئ حساباً مجانياً في <b dir="ltr">emailjs.com</b> ← <b>Email Services ← Add</b> (اربط Gmail الخاص بك) ← <b>Email Templates ← Create</b>: في خانة <b>To Email</b> اكتب <b dir="ltr">{{to_email}}</b> وفي <b>Subject</b> اكتب <b dir="ltr">{{subject}}</b> وفي المحتوى (وضع HTML) اكتب <b dir="ltr">{{{message_html}}}</b>. ثم انسخ <b>Public Key</b> و<b>Service ID</b> و<b>Template ID</b> والصقها في <b>EMAILJS</b> داخل الملف. وفي إعدادات حسابك قيّد الدومين المسموح به.</li>
+    <li>في Firebase: <b>Authentication ← Settings ← Authorized domains</b> أضف دومين موقعك. ثم <b>سجّل أنت أولاً</b> بنفس بريد <b>OWNER_EMAIL</b> (يصبح حسابك مفعّلاً ومسؤولاً)، وبعدها يفتح الحلاقون حساباتهم وتصلك طلباتهم على بريدك.</li>
+  </ol></div>
+  <div class="panel"><h3 style="margin-bottom:10px">قواعد Firestore (Rules)</h3>
+    <label>بريدك (المسؤول) — يدخل في القواعد وفي OWNER_EMAIL</label><input id="ownerIn" type="email" dir="ltr" placeholder="you@gmail.com" style="margin-bottom:10px">
+    <div class="code" id="rulesBox"></div>
+    <button class="btn small" style="margin-top:10px" id="copyRules">نسخ القواعد</button></div>
+</div></div>
+
+<!-- ============ الصفحة الرئيسية: دخول / إنشاء حساب حلاق ============ -->
+<div id="home" class="hide">
+<div class="stripe"></div>
+<nav><div class="container"><a href="#" class="logo"><div class="pole"></div><span>Barber Booking</span></a></div></nav>
+<header class="hero"><div class="container">
+  <div class="eyebrow">منصة حجز مواعيد للحلاقين</div>
+  <h1>احجز <em>بذكاء</em></h1>
+  <p>افتح حسابك كحلاق، خذ رابط محلّك، وأرسله لزبائنك. كل حجز يظهر عندك مباشرة ويصلك أيضاً على ماسنجر.</p>
+</div></header>
+<section style="padding-top:34px"><div class="container">
+  <div class="auth">
+    <div class="tabs"><button class="tab on" id="tabLogin">دخول</button><button class="tab" id="tabReg">حساب جديد</button></div>
+    <div id="regFields" class="hide">
+      <label>اسم المحل</label><input id="rShop" maxlength="50" placeholder="مثال: صالون الملكي">
+      <label>اسم الرابط (حروف إنجليزية وأرقام)</label><input id="rSlug" dir="ltr" maxlength="30" placeholder="royal-cut">
+      <label>حساب ماسنجر (الاسم أو رابط فيسبوك)</label><input id="rMsg" dir="ltr" placeholder="jr.abdou.2025">
+      <label>رقم هاتفك</label><input id="rPhone" type="tel" dir="ltr" placeholder="0555 00 00 00">
+      <p class="note">ℹ حسابك سيكون <b>قيد المراجعة</b> حتى يوافق عليه المسؤول، ثم يعمل موقعك للزبائن.</p>
+    </div>
+    <label>البريد الإلكتروني</label><input id="aEmail" type="email" dir="ltr" autocomplete="email">
+    <label>كلمة السر</label><input id="aPass" type="password" dir="ltr" autocomplete="current-password">
+    <button class="btn" style="width:100%;margin-top:18px" id="aGo">دخول</button>
+    <button class="btn ghost small" style="width:100%;margin-top:10px" id="aForgot">نسيت كلمة السر</button>
+    <div id="aMsg" class="err hide"></div>
+  </div>
+</div></section>
+<footer><div class="container">Barber Booking</div></footer>
+</div>
+
+<!-- ============ موقع الحلاق (يراه الزبون) ============ -->
+<div id="site" class="hide">
+<div class="stripe"></div>
+<nav><div class="container">
+  <a href="#home2" class="logo"><div class="pole"></div><span id="logoName"></span></a>
+  <div class="links">
+    <button class="chip hide" id="backDash">← لوحتي</button>
+    <button class="chip" id="langBtn">EN</button>
+    <a href="#book" class="btn small" data-i="nav_book"></a>
+  </div></div></nav>
+
+<header class="hero" id="home2"><div class="container">
+  <div class="eyebrow" data-i="hero_eyebrow"></div>
+  <h1 id="heroTitle"></h1>
+  <p id="heroTag"></p>
+  <div class="cta"><a href="#book" class="btn" data-i="hero_cta"></a><a href="#services" class="btn ghost" data-i="hero_cta2"></a></div>
+</div></header>
+
+<section id="services"><div class="container">
+  <div class="sec-head"><h2 data-i="svc_title"></h2><div class="divider"></div></div>
+  <div class="grid" id="svcGrid"></div>
+</div></section>
+
+<section class="alt" id="book"><div class="container">
+  <div class="sec-head"><h2 data-i="book_title"></h2><div class="divider"></div></div>
+  <div class="booking" id="booking"></div>
+</div></section>
+
+<section id="contact"><div class="container">
+  <div class="sec-head"><h2 data-i="contact_title"></h2><div class="divider"></div></div>
+  <div class="contact">
+    <div><div class="ic">📍</div><h3 data-i="c_addr"></h3><p id="cAddr"></p></div>
+    <div><div class="ic">🕘</div><h3 data-i="c_hours"></h3><p id="cHours"></p></div>
+    <a id="cTel"><div class="ic">📞</div><h3 data-i="c_phone"></h3><p id="cPhone" dir="ltr"></p></a>
+  </div>
+</div></section>
+
+<footer><div class="container">© <span id="year"></span> <span id="footName"></span></div></footer>
+</div>
+
+<!-- ============ لوحة الحلاق ============ -->
+<div id="dash" class="hide"><div class="wrap">
+  <div class="bar"><h2>💈 <span id="dName">لوحة التحكم</span></h2>
+    <div><a class="btn ghost small" id="viewSite" target="_blank">عرض موقعي</a> <button class="btn danger small" id="logout">خروج</button></div></div>
+
+  <div id="statusBar" class="hide"></div>
+  <div class="panel" id="sharePanel"><b>🔗 رابط محلّك (أرسله لزبائنك)</b>
+    <div class="code" id="shareLink" style="margin-top:8px;max-height:none"></div>
+    <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><button class="btn small" id="copyLink">نسخ الرابط</button></div>
+    <p class="note" style="margin-top:12px">🔐 رابط دخولك أنت (لا ترسله للزبائن): <b dir="ltr" id="adminLink"></b></p>
+    <p class="note hide" id="fileWarn" style="color:#ffb86b">⚠ أنت فاتح الملف من جهازك. ارفعه على استضافة مجانية (مثل netlify.com/drop) حتى يشتغل الرابط عند زبائنك.</p></div>
+
+  <div class="tabs"><button class="tab hide" data-tab="barbers" id="tabBarbers">👑 الحلاقين <span id="pendBadge"></span></button><button class="tab on" data-tab="bookings">الحجوزات</button><button class="tab" data-tab="services">الخدمات والأسعار</button><button class="tab" data-tab="settings">الإعدادات</button></div>
+
+  <div id="tab-barbers" class="hide">
+    <div class="kpis" id="bKpis"></div>
+    <div id="bList"></div></div>
+
+  <div id="tab-bookings"><div class="kpis" id="kpis"></div>
+    <div class="panel"><div class="row2" style="margin-bottom:12px">
+      <div><label>تصفية بالتاريخ</label><input type="date" id="fDate"></div>
+      <div><label>الحالة</label><select id="fStatus"><option value="">الكل</option><option value="confirmed">مؤكد</option><option value="completed">منجز</option><option value="cancelled">ملغى</option></select></div></div>
+      <div class="scroll"><table><thead><tr><th>الرقم</th><th>الزبون</th><th>الهاتف</th><th>الخدمة</th><th>الموعد</th><th>الحالة</th><th></th></tr></thead><tbody id="bkBody"></tbody></table></div></div></div>
+
+  <div id="tab-services" class="hide">
+    <div class="panel"><h3 style="margin-bottom:12px">إضافة / تعديل خدمة</h3><input type="hidden" id="sId">
+      <div class="row2"><div><label>الاسم (English)</label><input id="sName"></div><div><label>الاسم (عربي)</label><input id="sNameAr"></div>
+        <div><label>السعر</label><input type="number" id="sPrice" min="0" inputmode="numeric"></div><div><label>المدة (دقيقة)</label><input type="number" id="sDur" min="5" step="5" value="30" inputmode="numeric"></div></div>
+      <label>الوصف</label><input id="sDesc">
+      <div style="margin-top:14px;display:flex;gap:10px"><button class="btn" id="sSave">حفظ الخدمة</button><button class="btn ghost" id="sReset">جديد</button></div></div>
+    <div class="panel scroll"><table><thead><tr><th>الخدمة</th><th>السعر</th><th>المدة</th><th></th></tr></thead><tbody id="svBody"></tbody></table></div></div>
+
+  <div id="tab-settings" class="hide"><div class="panel"><div class="row2">
+    <div><label>اسم المحل</label><input id="shopName"></div><div><label>الشعار (English)</label><input id="tagline"></div>
+    <div><label>الشعار (عربي)</label><input id="taglineAr"></div><div><label>حساب ماسنجر (اسم الحساب أو رابط فيسبوك)</label><input id="messenger" dir="ltr"></div>
+    <div><label>الهاتف</label><input id="phone" dir="ltr"></div><div><label>العنوان</label><input id="address"></div>
+    <div><label>العملة</label><input id="currency"></div><div><label>وقت الفتح</label><input type="time" id="openTime"></div>
+    <div><label>وقت الإغلاق</label><input type="time" id="closeTime"></div><div><label>الفاصل بين المواعيد (دقيقة)</label><input type="number" id="slotMinutes" inputmode="numeric"></div>
+    <div><label>عدد الحلاقين في نفس الوقت</label><input type="number" id="barbers" min="1" inputmode="numeric"></div><div><label>الحجز المسبق (عدد الأيام)</label><input type="number" id="maxDaysAhead" min="1" inputmode="numeric"></div>
+    <div><label>لون الموقع الرئيسي</label><input type="color" id="color" style="height:48px"></div></div>
+    <label>أيام العطلة الأسبوعية</label><div class="days" id="closedDays"></div>
+    <label>أيام مغلقة خاصة (عطل / إجازات)</label>
+    <div style="display:flex;gap:10px"><input type="date" id="blkDate"><button class="btn ghost small" id="blkAdd">إضافة</button></div>
+    <div id="blkList" style="margin-top:8px"></div>
+    <button class="btn" style="margin-top:18px;width:100%" id="setSave">حفظ الإعدادات</button>
+    <h3 style="margin:22px 0 4px">🔑 تغيير كلمة السر (بدون بريد)</h3>
+    <div class="row2"><div><label>كلمة السر الحالية</label><input id="oldPw" type="password" dir="ltr" autocomplete="current-password"></div>
+      <div><label>كلمة السر الجديدة (6 أحرف على الأقل)</label><input id="newPw" type="password" dir="ltr" autocomplete="new-password"></div></div>
+    <button class="btn small" style="margin-top:12px;width:100%" id="pwSave">تغيير كلمة السر</button>
+    <button class="btn ghost small" style="margin-top:10px;width:100%" id="chPass">أو أرسل رابطاً إلى بريدي</button>
+    <div id="setMsg" class="okmsg hide"></div></div></div>
+</div></div>
+
+<div id="bkView" class="hide" style="position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.75);display:grid;place-items:center;padding:16px">
+  <div class="panel" style="max-width:680px;width:100%;margin:0;max-height:85vh;overflow:auto">
+    <h3 id="bvTitle" style="margin-bottom:10px"></h3>
+    <div class="scroll"><table><thead><tr><th>الرقم</th><th>الزبون</th><th>الهاتف</th><th>الخدمة</th><th>الموعد</th><th>الحالة</th></tr></thead><tbody id="bvBody"></tbody></table></div>
+    <button class="btn danger small" id="bvClose" style="width:100%;margin-top:10px">إغلاق</button>
+  </div></div>
+
+<div id="notify" class="hide" style="position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.75);display:grid;place-items:center;padding:16px">
+  <div class="panel" style="max-width:460px;width:100%;margin:0">
+    <h3 style="margin-bottom:6px">✉ أخبر الزبون بالإلغاء</h3>
+    <p class="note" style="margin-top:0">تم إلغاء الحجز. أرسل للزبون رسالة بذلك (يمكنك تعديل النص):</p>
+    <textarea id="nMsg" rows="6" style="margin-top:10px;min-height:120px"></textarea>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
+      <a class="btn small" id="nWa" target="_blank" rel="noopener" style="flex:1">واتساب</a>
+      <a class="btn small ghost" id="nSms" style="flex:1">رسالة SMS</a>
+      <button class="btn small ghost" id="nCopy" style="flex:1">نسخ</button></div>
+    <button class="btn danger small" id="nClose" style="width:100%;margin-top:10px">إغلاق</button>
+  </div></div>
+
+<script type="module">
+/* ====================================================================
+   ① الصق هنا إعدادات Firebase الخاصة بك (من Project settings ← Your apps)
+   ==================================================================== */
+const CFG = {
+  apiKey: "demo",
+  authDomain: "demo",
+  projectId: "demo",
+  appId: "demo"
+};
+/* ==================================================================== */
+
+/* ② (اختياري) اكتب هنا اسم رابط محلك (slug) ليفتح الموقع مباشرة على صفحة الحجز عند الزبون بدون ?b=
+   مثال: const DEFAULT_SLUG = 'royal-cut';   — دخولك أنت يكون دائماً عبر  index.html?admin */
+const DEFAULT_SLUG = '';
+/* ③ بعد أن تنشئ حسابك غيّرها إلى false لإخفاء زر "حساب جديد" */
+const ALLOW_REGISTER = true;
+/* ④ بريدك أنت (المسؤول). سجّل به أولاً قبل أي حلاق. أنت وحدك تقبل أو توقف أو تحذف الحلاقين */
+const OWNER_EMAIL = 'alaallali157@gmail.com';
+/* ④-ب إشعارات البريد (EmailJS — مجاني، من emailjs.com). كل طلب تسجيل جديد يصلك على OWNER_EMAIL، ويصل الحلاق بريد عند القبول أو الرفض.
+   في EmailJS: أضف Email Service ثم Email Template  (To email = {{to_email}} ، Subject = {{subject}} ، المحتوى = {{{message_html}}}) ثم الصق المعرّفات هنا. */
+const EMAILJS = { publicKey: 'PASTE_PUBLIC_KEY', serviceId: 'PASTE_SERVICE_ID', templateId: 'PASTE_TEMPLATE_ID' };
+const NOTIFY_OWNER_BOOKINGS = true; /* true = كل حجز جديد يصلك أيضاً على بريدك */
+/* ⑤ (اختياري) حساب ماسنجر الخاص بك ليراسلك الحلاقون لطلب تفعيل حسابهم */
+const OWNER_MESSENGER = 'jr.abdou.2025';
+
+const makeRules = email => `rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isOwner() {
+      return request.auth != null && request.auth.token.email.lower() == '${String(email || '').trim().toLowerCase()}';
+    }
+    function shopActive(uid) {
+      return get(/databases/$(database)/documents/barbers/$(uid)).data.get('status', 'active') == 'active';
+    }
+
+    match /slugs/{slug} {
+      allow read: if true;
+      allow create: if request.auth != null
+        && request.resource.data.uid == request.auth.uid
+        && slug.matches('^[a-z0-9-]{3,30}$');
+      allow delete: if isOwner();
+    }
+
+    match /barbers/{uid} {
+      allow read: if true;
+      allow create: if request.auth != null && request.auth.uid == uid
+        && (request.resource.data.status == 'pending'
+            || (isOwner() && request.resource.data.status == 'active'));
+      allow update: if isOwner()
+        || (request.auth != null && request.auth.uid == uid
+            && request.resource.data.status == resource.data.get('status', 'active')
+            && request.resource.data.slug == resource.data.slug);
+      allow delete: if isOwner();
+
+      match /bookings/{id} {
+        allow read, update, delete: if request.auth != null && (request.auth.uid == uid || isOwner());
+        allow create: if shopActive(uid)
+          && request.resource.data.status == 'confirmed'
+          && request.resource.data.name is string && request.resource.data.name.size() <= 60
+          && request.resource.data.phone is string && request.resource.data.phone.size() <= 20;
+      }
+    }
+
+    match /contacts/{uid} {
+      allow read: if request.auth != null && (request.auth.uid == uid || isOwner());
+      allow create: if request.auth != null && request.auth.uid == uid;
+      allow update, delete: if isOwner();
+    }
+
+    match /taken/{id} {
+      allow read: if true;
+      allow create: if request.resource.data.keys().hasOnly(['uid','date','startMin','lane'])
+        && shopActive(request.resource.data.uid)
+        && id == request.resource.data.uid + '_' + request.resource.data.date + '_' + string(request.resource.data.startMin) + '_' + string(request.resource.data.lane);
+      allow delete: if request.auth != null && (id.matches(request.auth.uid + '_.*') || isOwner());
+    }
+  }
+}`;
+const RULES = makeRules(OWNER_EMAIL);
+
+const configured = CFG.apiKey && CFG.projectId && CFG.apiKey.indexOf('PASTE') < 0 && CFG.projectId.indexOf('PASTE') < 0 && OWNER_EMAIL.indexOf('@') > 0;
+
+
+/* ---------- إرسال البريد عبر EmailJS ---------- */
+const mailReady = () => EMAILJS.publicKey.indexOf('PASTE') < 0 && EMAILJS.serviceId.indexOf('PASTE') < 0 && EMAILJS.templateId.indexOf('PASTE') < 0;
+async function sendMail(to, subject, title, rows, adminBtn) {
+  if (!mailReady() || !to) return false;
+  const adminUrl = location.origin + location.pathname + '?admin';
+  const e2 = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const html = '<div dir="rtl" style="font-family:Tahoma,Arial,sans-serif;max-width:480px;margin:auto;padding:18px;border:1px solid #ddd;border-radius:10px"><h2 style="margin:0 0 12px">' + e2(title) + '</h2>' +
+    rows.map(r => '<p style="margin:6px 0"><b>' + e2(r[0]) + ':</b> ' + e2(r[1]) + '</p>').join('') +
+    (adminBtn ? '<p style="margin-top:18px"><a href="' + adminUrl + '" style="background:#c9a24b;color:#111;padding:12px 20px;border-radius:6px;text-decoration:none;font-weight:bold">افتح لوحة التحكم للقبول أو الرفض</a></p>' : '') + '</div>';
+  try {
+    const r = await fetch('https://api.emailjs.com/api/v1.0/email/send', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ service_id: EMAILJS.serviceId, template_id: EMAILJS.templateId, user_id: EMAILJS.publicKey, template_params: { to_email: to, subject, message_html: html } }) });
+    return r.ok;
+  } catch (e) { return false; }
+}
+const notifyOwner = (subject, title, rows, adminBtn) => sendMail(OWNER_EMAIL.trim(), subject, title, rows, adminBtn);
+
+/* ---------- أدوات ---------- */
+const $ = id => document.getElementById(id);
+const screens = ['loading', 'setup', 'home', 'site', 'dash'];
+const show = n => screens.forEach(s => $(s).classList.toggle('hide', s !== n));
+const pad = n => String(n).padStart(2, '0');
+const dstr = d => d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+const toMin = t => { const p = t.split(':'); return +p[0] * 60 + +p[1]; };
+const fromMin = n => pad(Math.floor(n / 60)) + ':' + pad(n % 60);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const uid8 = () => Array.from(crypto.getRandomValues(new Uint8Array(4))).map(b => pad(b.toString(16))).join('').toUpperCase();
+function msgrName(v) {
+  v = String(v || '').trim();
+  const m = v.match(/profile\.php\?id=(\d+)/i); if (m) return m[1];
+  return v.replace(/^https?:\/\/(www\.|m\.)?(facebook\.com|fb\.com|messenger\.com\/t|m\.me)\//i, '').replace(/[?#].*$/, '').replace(/\/+$/, '');
+}
+const unitsOf = (t, d) => { const a = []; for (let u = Math.floor(t / 5) * 5; u < t + d; u += 5) a.push(u); return a; };
+const authErr = e => ({
+  'auth/email-already-in-use': 'هذا البريد مسجّل من قبل، جرّب الدخول.',
+  'auth/invalid-email': 'البريد الإلكتروني غير صحيح.',
+  'auth/weak-password': 'كلمة السر قصيرة (6 أحرف على الأقل).',
+  'auth/invalid-credential': 'البريد أو كلمة السر خاطئة.',
+  'auth/wrong-password': 'البريد أو كلمة السر خاطئة.',
+  'auth/user-not-found': 'البريد أو كلمة السر خاطئة.',
+  'auth/too-many-requests': 'محاولات كثيرة، انتظر قليلاً ثم أعد المحاولة.',
+  'auth/network-request-failed': 'لا يوجد اتصال بالإنترنت.',
+  'auth/operation-not-allowed': 'فعّل Email/Password من Authentication في Firebase.'
+}[e && e.code] || ('خطأ: ' + ((e && (e.code || e.message)) || e)));
+
+const DEFAULTS = {
+  settings: {
+    shopName: '', tagline: 'Classic cuts. Modern precision.', taglineAr: 'قصّات كلاسيكية. دقّة عصرية.',
+    messenger: '', phone: '', address: '', openTime: '09:00', closeTime: '20:00', slotMinutes: 30, barbers: 1,
+    closedWeekdays: [5], blockedDates: [], currency: 'DA', maxDaysAhead: 30, color: '#c9a24b'
+  },
+  services: [
+    { id: 's1', name: 'Classic Haircut', nameAr: 'حلاقة كلاسيكية', price: 800, duration: 30, description: 'قصّة نظيفة بالمقص أو الآلة مع تسريح أنيق' },
+    { id: 's2', name: 'Beard Trim', nameAr: 'تهذيب اللحية', price: 500, duration: 30, description: 'تحديد وتهذيب اللحية مع منشفة ساخنة' },
+    { id: 's3', name: 'Haircut + Beard', nameAr: 'حلاقة + لحية', price: 1200, duration: 60, description: 'باقة العناية الكاملة، الأكثر طلباً' },
+    { id: 's4', name: 'Kids Haircut', nameAr: 'حلاقة أطفال', price: 600, duration: 30, description: 'قصّة سريعة ولطيفة للأطفال دون 12 سنة' },
+    { id: 's5', name: 'Hot Towel Shave', nameAr: 'حلاقة بالمنشفة الساخنة', price: 700, duration: 30, description: 'حلاقة تقليدية بموس الحلاقة' }
+  ]
+};
+
+/* ---------- نسخة محاكاة تعمل محلياً داخل المتصفح (بدون إنترنت) ---------- */
+function makeFakeFirebase() {
+  const L = () => JSON.parse(localStorage.getItem('fakeusers') || '{}');
+  const S = v => localStorage.setItem('fakeusers', JSON.stringify(v));
+  const auth = { currentUser: null }; const subs = [];
+  const cur = () => { const id = localStorage.getItem('fakecur'); const u = id && L()[id]; return u ? { uid: id, email: u.email } : null; };
+  auth.currentUser = cur();
+  const fire = () => { auth.currentUser = cur(); subs.forEach(f => f(auth.currentUser)); };
+  const err = c => { const e = new Error(c); e.code = c; return e; };
+  const load = () => JSON.parse(localStorage.getItem('fakedb') || '{}');
+  const save = d => localStorage.setItem('fakedb', JSON.stringify(d));
+  const snapDoc = (p, d) => ({ id: p.split('/').pop(), exists: () => d !== undefined, data: () => d === undefined ? undefined : JSON.parse(JSON.stringify(d)) });
+  const list = q => { const col = q.col, d = load(), out = []; const depth = col.split('/').length + 1;
+    Object.keys(d).forEach(p => { if (p.startsWith(col + '/') && p.split('/').length === depth) { const v = d[p]; if ((q.w || []).every(w => v[w.f] === w.v)) out.push({ id: p.split('/').pop(), data: () => JSON.parse(JSON.stringify(v)) }); } }); return out; };
+  const mk = q => { const docs = list(q); return { docs, forEach: f => docs.forEach(f), docChanges: () => [] }; };
+  return {
+    auth, db: {},
+    initializeApp: () => ({}),
+    getAuth: () => auth,
+    getFirestore: () => ({}),
+    onAuthStateChanged: (a, cb) => { subs.push(cb); setTimeout(() => cb(cur()), 0); },
+    createUserWithEmailAndPassword: async (a, email, pw) => {
+      const u = L(); if (Object.values(u).some(x => x.email === email)) throw err('auth/email-already-in-use');
+      if (pw.length < 6) throw err('auth/weak-password');
+      const id = 'U' + Math.random().toString(36).slice(2, 10); u[id] = { email, pw }; S(u); localStorage.setItem('fakecur', id); fire(); return { user: cur() };
+    },
+    signInWithEmailAndPassword: async (a, email, pw) => {
+      const u = L(), id = Object.keys(u).find(k => u[k].email === email && u[k].pw === pw); if (!id) throw err('auth/invalid-credential');
+      localStorage.setItem('fakecur', id); fire(); return { user: cur() };
+    },
+    signOut: async () => { localStorage.removeItem('fakecur'); fire(); },
+    sendPasswordResetEmail: async () => { throw err('demo/no-email'); },
+    EmailAuthProvider: { credential: (email, pw) => ({ email, pw }) },
+    reauthenticateWithCredential: async (u, c) => { const us = L(); if (!us[u.uid] || us[u.uid].pw !== c.pw) throw err('auth/invalid-credential'); },
+    updatePassword: async (u, n) => { const us = L(); us[u.uid].pw = n; S(us); },
+    doc: (db, ...p) => ({ path: p.join('/'), id: p[p.length - 1] }),
+    collection: (db, ...p) => ({ col: p.join('/') }),
+    where: (f, o, v) => ({ f, o, v }),
+    query: (c, ...w) => ({ col: c.col, w }),
+    getDoc: async r => snapDoc(r.path, load()[r.path]),
+    setDoc: async (r, data, o) => { const d = load(); d[r.path] = o && o.merge ? Object.assign({}, d[r.path], data) : JSON.parse(JSON.stringify(data)); save(d); },
+    updateDoc: async (r, data) => { const d = load(); if (!d[r.path]) throw new Error('nf'); Object.assign(d[r.path], data); save(d); },
+    deleteDoc: async r => { const d = load(); delete d[r.path]; save(d); },
+    getDocs: async q => mk(q),
+    onSnapshot: (q, cb) => { let prev = null; const tick = () => { const s = mk(q), ids = s.docs.map(x => x.id).sort().join(',');
+      if (ids !== prev || JSON.stringify(s.docs.map(x => x.data())) !== window['__p' + q.col]) { const old = prev === null ? [] : prev.split(',').filter(Boolean);
+        s.docChanges = () => s.docs.filter(x => old.indexOf(x.id) < 0).map(x => ({ type: 'added', doc: x })); window['__p' + q.col] = JSON.stringify(s.docs.map(x => x.data())); prev = ids; cb(s); } };
+      tick(); const h = setInterval(tick, 250); return () => clearInterval(h); },
+    runTransaction: async (db, fn) => {
+      for (let a = 0; a < 3; a++) {
+        const d = load(), writes = [];
+        const tx = { get: async r => snapDoc(r.path, d[r.path]), set: (r, data) => writes.push([r.path, data]) };
+        await fn(tx);
+        const d2 = load();
+        if (writes.some(([p]) => p.startsWith('taken/') && d2[p] !== undefined)) continue;
+        writes.forEach(([p, v]) => { d2[p] = JSON.parse(JSON.stringify(v)); }); save(d2); return;
+      }
+      throw new Error('TAKEN');
+    }
+  };
+}
+
+/* ---------- تحميل Firebase ---------- */
+let FB = {};
+async function boot() {
+  if (!configured) {
+    $('ownerIn').value = OWNER_EMAIL;
+    const updRules = () => { $('rulesBox').textContent = makeRules($('ownerIn').value); }; updRules(); $('ownerIn').oninput = updRules;
+    $('copyRules').onclick = () => { try { navigator.clipboard.writeText($('rulesBox').textContent); $('copyRules').textContent = 'تم النسخ ✓'; } catch (e) {} };
+    return show('setup');
+  }
+  try {
+    FB = makeFakeFirebase();
+  } catch (e) { $('loadMsg').textContent = 'حدث خطأ أثناء التحميل. أعد تحميل الصفحة.'; return; }
+  const qs = new URLSearchParams(location.search), admin = !qs.get("b");
+  const slug = (qs.get('b') || DEFAULT_SLUG || '').toLowerCase();
+  if (!ALLOW_REGISTER) $('tabReg').classList.add('hide');
+  if (slug && !admin) openShop(slug);
+  else FB.onAuthStateChanged(FB.auth, u => { if (registering) return; if (u) openDash(u); else { closeDash(); if (admin) show('home'); else notFound('افتح رابط المحل الذي أرسله لك الحلاق لتحجز موعدك.'); } });
+}
+
+/* ====================================================================
+   الجزء الأول: صفحة الدخول / إنشاء حساب
+   ==================================================================== */
+let mode = 'login', registering = false;
+function setMode(m) {
+  mode = m;
+  $('tabLogin').classList.toggle('on', m === 'login'); $('tabReg').classList.toggle('on', m === 'reg');
+  $('regFields').classList.toggle('hide', m !== 'reg');
+  $('aGo').textContent = m === 'login' ? 'دخول' : 'إنشاء الحساب';
+  $('aForgot').classList.toggle('hide', m !== 'login');
+  $('aPass').setAttribute('autocomplete', m === 'login' ? 'current-password' : 'new-password');
+  $('aMsg').classList.add('hide');
+}
+const aMsg = (t, ok) => { const b = $('aMsg'); b.textContent = t; b.className = ok ? 'okmsg' : 'err'; };
+$('tabLogin').onclick = () => setMode('login'); $('tabReg').onclick = () => setMode('reg');
+$('rSlug').oninput = e => { e.target.value = e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ''); };
+$('aPass').onkeydown = e => { if (e.key === 'Enter') $('aGo').click(); };
+$('aForgot').onclick = async () => {
+  const email = $('aEmail').value.trim(); if (!email) return aMsg('اكتب بريدك أولاً ثم اضغط "نسيت كلمة السر".');
+  try { await FB.sendPasswordResetEmail(FB.auth, email); aMsg('أرسلنا لك رابطاً على بريدك ✓ قد يتأخر دقائق، راجع مجلد Spam / غير المرغوب فيه، وتأكد أنه نفس البريد المسجّل به.', true); } catch (e) { aMsg(authErr(e)); }
+};
+$('aGo').onclick = async () => {
+  const email = $('aEmail').value.trim(), pass = $('aPass').value;
+  if (!email || !pass) return aMsg('اكتب البريد وكلمة السر.');
+  $('aGo').disabled = true;
+  try {
+    if (mode === 'login') { await FB.signInWithEmailAndPassword(FB.auth, email, pass); }
+    else {
+      const shopName = $('rShop').value.trim(), slug = $('rSlug').value.trim().toLowerCase(), messenger = msgrName($('rMsg').value);
+      if (shopName.length < 2) throw { message: 'اكتب اسم المحل.' };
+      if (!/^[a-z0-9-]{3,30}$/.test(slug)) throw { message: 'اسم الرابط: 3 إلى 30 حرفاً إنجليزياً أو أرقاماً أو -' };
+      if (!messenger) throw { message: 'اكتب حساب ماسنجر الذي تستقبل عليه الحجوزات.' };
+      const rphone = $('rPhone').value.trim();
+      if (!/^[+\d\s-]{8,20}$/.test(rphone)) throw { message: 'اكتب رقم هاتف صحيح.' };
+      const ex = await FB.getDoc(FB.doc(FB.db, 'slugs', slug));
+      if (ex.exists()) throw { message: 'اسم الرابط مستعمل، اختر اسماً آخر.' };
+      registering = true;
+      const cr = await FB.createUserWithEmailAndPassword(FB.auth, email, pass);
+      const uid = cr.user.uid;
+      const data = JSON.parse(JSON.stringify(DEFAULTS));
+      data.slug = slug; data.settings.shopName = shopName; data.settings.messenger = messenger; data.settings.phone = rphone;
+      const isOwnerReg = email.toLowerCase() === OWNER_EMAIL.trim().toLowerCase();
+      data.status = isOwnerReg ? 'active' : 'pending'; data.createdAt = new Date().toISOString();
+      await FB.setDoc(FB.doc(FB.db, 'slugs', slug), { uid });
+      await FB.setDoc(FB.doc(FB.db, 'barbers', uid), data);
+      try { await FB.setDoc(FB.doc(FB.db, 'contacts', uid), { email, shopName, phone: rphone, slug }); } catch (e) {}
+      if (!isOwnerReg) notifyOwner('🆕 طلب حساب حلاق جديد: ' + shopName, 'طلب حساب جديد ينتظر قرارك:', [['المحل', shopName], ['الرابط', '/' + slug], ['البريد', email], ['الهاتف', rphone], ['ماسنجر', messenger]], true);
+      registering = false;
+      openDash(cr.user);
+    }
+  } catch (e) { registering = false; aMsg(e && e.code ? (e.code === 'permission-denied' ? 'تعذّر الحفظ: تأكد أنك نشرت قواعد Firestore (Rules).' : authErr(e)) : (e && e.message) || 'حدث خطأ'); }
+  $('aGo').disabled = false;
+};
+
+/* ====================================================================
+   الجزء الثاني: موقع الحلاق للزبون
+   ==================================================================== */
+const T = {
+  ar: { nav_book:'احجز الآن', hero_eyebrow:'صالون حلاقة رجالي', hero_cta:'احجز موعدك', hero_cta2:'الخدمات والأسعار',
+    svc_title:'الخدمات والأسعار', min:'د', book_title:'احجز موعدك', p1:'الخدمة', p2:'الموعد', p3:'بياناتك', p4:'تأكيد',
+    pick_service:'اختر الخدمة', pick_date:'اختر اليوم', pick_time:'اختر الوقت', morning:'صباحاً', evening:'بعد الظهر',
+    no_slots:'لا توجد أوقات متاحة في هذا اليوم. اختر يوماً آخر.', s3:'بياناتك', s4:'مراجعة وتأكيد', name:'الاسم الكامل', phone:'رقم الهاتف',
+    next:'التالي', back:'رجوع', confirm:'تأكيد الحجز', sum_service:'الخدمة', sum_date:'التاريخ', sum_time:'الوقت', sum_price:'السعر', sum_name:'الاسم',
+    done_title:'تم تأكيد الحجز!', done_text:'رقم حجزك:', done_msg:'جارٍ تحويلك إلى ماسنجر لإرسال تفاصيل حجزك…', open_messenger:'المتابعة على ماسنجر',
+    copy_hint:'تم نسخ رسالة الحجز — إذا لم تظهر في المحادثة الصقها فقط.', new_booking:'حجز جديد', contact_title:'زرنا', c_addr:'العنوان', c_hours:'ساعات العمل', c_phone:'اتصل بنا', closed:'مغلق',
+    bad_name:'أدخل اسمك من فضلك', bad_phone:'أدخل رقم هاتف صحيح', taken:'عذراً، هذا الوقت حُجز للتو. اختر وقتاً آخر.', fail:'تعذّر إتمام الحجز، حاول مرة أخرى.', wait:'… جارٍ الحجز' },
+  en: { nav_book:'Book Now', hero_eyebrow:"MEN'S BARBERSHOP", hero_cta:'Book Appointment', hero_cta2:'Services & Prices',
+    svc_title:'Services & Prices', min:'min', book_title:'Book Your Appointment', p1:'Service', p2:'Time', p3:'Details', p4:'Confirm',
+    pick_service:'Choose a service', pick_date:'Choose a day', pick_time:'Choose a time', morning:'Morning', evening:'Afternoon',
+    no_slots:'No available times on this day. Please pick another day.', s3:'Your Details', s4:'Review & Confirm', name:'Full name', phone:'Phone number',
+    next:'Next', back:'Back', confirm:'Confirm Booking', sum_service:'Service', sum_date:'Date', sum_time:'Time', sum_price:'Price', sum_name:'Name',
+    done_title:'Booking confirmed!', done_text:'Your reference:', done_msg:'Redirecting you to Messenger to send your booking…', open_messenger:'Continue on Messenger',
+    copy_hint:'Your booking message was copied — if it does not appear in the chat, just paste it.', new_booking:'Make another booking', contact_title:'Visit Us', c_addr:'Address', c_hours:'Opening hours', c_phone:'Call us', closed:'Closed',
+    bad_name:'Please enter your name', bad_phone:'Please enter a valid phone number', taken:'Sorry, this time was just taken. Please choose another.', fail:'Could not complete the booking, please try again.', wait:'Booking…' }
+};
+const DAYS = { ar: ['الأحد','الإثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'], en: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'] };
+const SHORT = { ar: ['أحد','إثنين','ثلاثاء','أربعاء','خميس','جمعة','سبت'], en: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'] };
+const MONTHS = { ar: ['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'], en: ['January','February','March','April','May','June','July','August','September','October','November','December'] };
+let lang = 'ar'; try { lang = localStorage.getItem('barber_lang') || 'ar'; } catch (e) {}
+const t = k => T[lang][k] || k;
+let shop = null, taken = [];
+let st = { step: 1, service: null, date: '', time: '', name: '', phone: '', error: '', result: null, busy: false };
+const svcName = s => (lang === 'ar' && s.nameAr) ? s.nameAr : s.name;
+const resetSt = () => { st = { step: 1, service: null, date: '', time: '', name: '', phone: '', error: '', result: null, busy: false }; };
+
+function notFound(msg) { $('loadMsg').textContent = msg || 'هذه الصفحة غير موجودة.'; show('loading'); }
+async function openShop(slug) {
+  show('loading');
+  try {
+    const s = await FB.getDoc(FB.doc(FB.db, 'slugs', slug));
+    if (!s.exists()) return notFound();
+    const uid = s.data().uid, d = await FB.getDoc(FB.doc(FB.db, 'barbers', uid));
+    if (!d.exists() || (d.data().status || 'active') !== 'active') return notFound('هذا المحل غير متاح حالياً.');
+    shop = Object.assign({ uid }, d.data());
+    shop.settings = Object.assign({}, DEFAULTS.settings, shop.settings);
+    await loadTaken();
+  } catch (e) { return notFound('تعذّر تحميل الصفحة. تأكد من الإنترنت ومن نشر قواعد Firebase.'); }
+  show('site'); applyLang();
+}
+async function loadTaken() {
+  const q = FB.query(FB.collection(FB.db, 'taken'), FB.where('uid', '==', shop.uid));
+  const snap = await FB.getDocs(q);
+  taken = []; snap.forEach(d => taken.push(d.data()));
+}
+function dayIsOpen(date) {
+  const s = shop.settings, today = dstr(new Date());
+  if (date < today) return false;
+  const max = new Date(); max.setDate(max.getDate() + Number(s.maxDaysAhead || 30));
+  if (date > dstr(max)) return false;
+  if ((s.blockedDates || []).indexOf(date) >= 0) return false;
+  return (s.closedWeekdays || []).indexOf(new Date(date + 'T00:00:00').getDay()) < 0;
+}
+function laneFree(date, units, lane) { return !taken.some(x => x.date === date && x.lane === lane && units.indexOf(x.startMin) >= 0); }
+function getSlots(date, duration) {
+  if (!date || !dayIsOpen(date)) return [];
+  const s = shop.settings, open = toMin(s.openTime), close = toMin(s.closeTime), step = Number(s.slotMinutes) || 30, lanes = Number(s.barbers || 1);
+  const now = new Date(), nowM = now.getHours() * 60 + now.getMinutes(), isToday = date === dstr(now), out = [];
+  for (let m = open; m + duration <= close; m += step) {
+    if (isToday && m <= nowM) continue;
+    const units = unitsOf(m, duration);
+    for (let k = 0; k < lanes; k++) if (laneFree(date, units, k)) { out.push(fromMin(m)); break; }
+  }
+  return out;
+}
+function applyLang() {
+  const s = shop.settings;
+  document.documentElement.lang = lang; document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  $('langBtn').textContent = lang === 'ar' ? 'EN' : 'عربي';
+  $('backDash').classList.toggle('hide', !(FB.auth && FB.auth.currentUser && (FB.auth.currentUser.uid === shop.uid || isOwnerUser())));
+  document.querySelectorAll('[data-i]').forEach(el => { el.textContent = t(el.getAttribute('data-i')); });
+  document.title = s.shopName;
+  document.documentElement.style.setProperty('--gold', s.color || '#c9a24b');
+  $('logoName').textContent = s.shopName; $('footName').textContent = s.shopName;
+  $('heroTitle').innerHTML = esc(s.shopName).replace(/(\S+)$/, '<em>$1</em>');
+  $('heroTag').textContent = lang === 'ar' ? (s.taglineAr || s.tagline) : s.tagline;
+  const closedNames = (s.closedWeekdays || []).map(d => DAYS[lang][d]).join(', ');
+  $('cAddr').textContent = s.address || '—';
+  $('cHours').textContent = s.openTime + ' – ' + s.closeTime + (closedNames ? ' · ' + t('closed') + ': ' + closedNames : '');
+  $('cPhone').textContent = s.phone || '—';
+  if (s.phone) $('cTel').setAttribute('href', 'tel:' + String(s.phone).replace(/[^\d+]/g, '')); else $('cTel').removeAttribute('href');
+  $('year').textContent = new Date().getFullYear();
+  $('svcGrid').innerHTML = shop.services.map(v => '<div class="svc"><div class="top"><h3>' + esc(svcName(v)) + '</h3><span class="price">' + v.price + ' ' + esc(s.currency) + '</span></div><p>' + esc(v.description) + '</p><div class="dur">⏱ ' + v.duration + ' ' + t('min') + '</div></div>').join('');
+  renderBooking();
+}
+function calendarHTML(svc) {
+  const s = shop.settings, total = Number(s.maxDaysAhead || 30), weekStart = lang === 'ar' ? 6 : 0, today = new Date();
+  let html = '', cur = -1, cells = '';
+  const flush = () => { if (cells) { html += '<div class="cal">' + cells + '</div>'; cells = ''; } };
+  for (let i = 0; i < total; i++) {
+    const d = new Date(today.getFullYear(), today.getMonth(), today.getDate() + i), key = dstr(d);
+    if (d.getMonth() !== cur || i === 0) {
+      flush(); cur = d.getMonth();
+      html += '<div class="month">' + MONTHS[lang][cur] + ' ' + d.getFullYear() + '</div>';
+      for (let w = 0; w < 7; w++) cells += '<div class="wd">' + SHORT[lang][(weekStart + w) % 7] + '</div>';
+      for (let b = 0; b < (d.getDay() - weekStart + 7) % 7; b++) cells += '<div></div>';
+    }
+    const ok = getSlots(key, svc.duration).length > 0;
+    cells += '<button class="day' + (ok ? '' : ' off') + (st.date === key ? ' sel' : '') + (i === 0 ? ' today' : '') + '" ' + (ok ? 'data-date="' + key + '"' : 'disabled') + '>' + d.getDate() + '</button>';
+  }
+  flush(); return html;
+}
+function renderBooking() {
+  const box = $('booking'), s = shop.settings, cur = esc(s.currency);
+  if (st.result) return renderDone(box);
+  let h = '<div class="progress">' + ['p1', 'p2', 'p3', 'p4'].map((k, i) => { const n = i + 1; return '<div class="pstep ' + (n < st.step ? 'done' : '') + (n === st.step ? ' on' : '') + '"><i>' + (n < st.step ? '✓' : n) + '</i>' + t(k) + '</div>'; }).join('') + '</div>';
+  const svc = shop.services.filter(x => x.id === st.service)[0];
+  if (st.step === 1) {
+    h += '<h3>' + t('pick_service') + '</h3><div class="choices">' + shop.services.map(v => '<button class="choice ' + (st.service === v.id ? 'sel' : '') + '" data-svc="' + v.id + '"><b>' + esc(svcName(v)) + '</b><span class="pr">' + v.price + ' ' + cur + '</span><small>⏱ ' + v.duration + ' ' + t('min') + '</small></button>').join('') + '</div><div class="nav-btns"><button class="btn" id="next" ' + (st.service ? '' : 'disabled') + '>' + t('next') + '</button></div>';
+  } else if (st.step === 2) {
+    h += '<h3>' + t('pick_date') + '</h3>' + calendarHTML(svc);
+    if (st.date) {
+      const slots = getSlots(st.date, svc.duration), am = slots.filter(x => toMin(x) < 720), pm = slots.filter(x => toMin(x) >= 720);
+      h += '<h3 id="timeTitle" style="margin-top:6px">' + t('pick_time') + '</h3>';
+      const grp = (label, arr) => arr.length ? '<div class="gl">' + label + '</div><div class="slots">' + arr.map(x => '<button class="slot ' + (st.time === x ? 'sel' : '') + '" data-time="' + x + '">' + x + '</button>').join('') + '</div>' : '';
+      h += slots.length ? grp(t('morning'), am) + grp(t('evening'), pm) : '<p class="note">' + t('no_slots') + '</p>';
+    }
+    h += '<div class="nav-btns"><button class="btn ghost" id="back">' + t('back') + '</button><button class="btn" id="next" ' + (st.time ? '' : 'disabled') + '>' + t('next') + '</button></div>';
+  } else if (st.step === 3) {
+    h += '<h3>' + t('s3') + '</h3><label>' + t('name') + '</label><input id="name" value="' + esc(st.name) + '" maxlength="60" autocomplete="name"><label>' + t('phone') + '</label><input id="phone" type="tel" inputmode="tel" value="' + esc(st.phone) + '" maxlength="20" dir="ltr" autocomplete="tel">' +
+      '<div class="nav-btns"><button class="btn ghost" id="back">' + t('back') + '</button><button class="btn" id="next">' + t('next') + '</button></div>';
+  } else {
+    h += '<h3>' + t('s4') + '</h3><div class="summary"><div><span>' + t('sum_service') + '</span><b>' + esc(svcName(svc)) + '</b></div><div><span>' + t('sum_date') + '</span><b>' + st.date + '</b></div><div><span>' + t('sum_time') + '</span><b>' + st.time + '</b></div><div><span>' + t('sum_price') + '</span><b style="color:var(--gold)">' + svc.price + ' ' + cur + '</b></div><div><span>' + t('sum_name') + '</span><b>' + esc(st.name) + '</b></div></div>' +
+      '<div class="nav-btns"><button class="btn ghost" id="back">' + t('back') + '</button><button class="btn" id="confirm" ' + (st.busy ? 'disabled' : '') + '>' + (st.busy ? t('wait') : t('confirm')) + '</button></div>';
+  }
+  if (st.error) h += '<div class="err">' + esc(st.error) + '</div>';
+  box.innerHTML = h;
+  box.querySelectorAll('[data-svc]').forEach(b => { b.onclick = () => { st.service = b.getAttribute('data-svc'); st.date = ''; st.time = ''; st.error = ''; renderBooking(); }; });
+  box.querySelectorAll('[data-date]').forEach(b => { b.onclick = () => { st.date = b.getAttribute('data-date'); st.time = ''; st.error = ''; renderBooking(); const tt = $('timeTitle'); if (tt) tt.scrollIntoView({ behavior: 'smooth', block: 'start' }); }; });
+  box.querySelectorAll('[data-time]').forEach(b => { b.onclick = () => { st.time = b.getAttribute('data-time'); renderBooking(); const n = $('next'); if (n) n.scrollIntoView({ behavior: 'smooth', block: 'center' }); }; });
+  const back = box.querySelector('#back'); if (back) back.onclick = () => { st.step--; st.error = ''; renderBooking(); };
+  const next = box.querySelector('#next');
+  if (next) next.onclick = async () => {
+    if (st.step === 1) { try { await loadTaken(); } catch (e) {} }
+    if (st.step === 3) {
+      st.name = box.querySelector('#name').value.trim(); st.phone = box.querySelector('#phone').value.trim();
+      if (st.name.length < 2) { st.error = t('bad_name'); return renderBooking(); }
+      if (!/^[+\d\s-]{8,20}$/.test(st.phone)) { st.error = t('bad_phone'); return renderBooking(); }
+    }
+    st.step++; st.error = ''; renderBooking(); $('book').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+  const c = box.querySelector('#confirm'); if (c) c.onclick = submit;
+}
+async function submit() {
+  if (st.busy) return;
+  const svc = shop.services.filter(x => x.id === st.service)[0], s = shop.settings, lanes = Number(s.barbers || 1);
+  st.busy = true; st.error = ''; renderBooking();
+  const id = uid8(), units = unitsOf(toMin(st.time), svc.duration);
+  const bref = FB.doc(FB.db, 'barbers', shop.uid, 'bookings', id);
+  let takenIds = [];
+  try {
+    await FB.runTransaction(FB.db, async tx => {
+      let chosen = -1;
+      for (let k = 0; k < lanes && chosen < 0; k++) {
+        const snaps = await Promise.all(units.map(u => tx.get(FB.doc(FB.db, 'taken', shop.uid + '_' + st.date + '_' + u + '_' + k))));
+        if (snaps.every(x => !x.exists())) chosen = k;
+      }
+      if (chosen < 0) throw new Error('TAKEN');
+      takenIds = units.map(u => shop.uid + '_' + st.date + '_' + u + '_' + chosen);
+      units.forEach(u => tx.set(FB.doc(FB.db, 'taken', shop.uid + '_' + st.date + '_' + u + '_' + chosen), { uid: shop.uid, date: st.date, startMin: u, lane: chosen }));
+      tx.set(bref, { id, serviceId: svc.id, serviceName: svc.name, price: svc.price, duration: svc.duration, name: st.name, phone: st.phone, date: st.date, time: st.time, startMin: toMin(st.time), status: 'confirmed', createdAt: new Date().toISOString(), takenIds });
+    });
+  } catch (e) {
+    st.busy = false;
+    try { await loadTaken(); } catch (x) {}
+    if (e && e.message === 'TAKEN') { st.error = t('taken'); st.step = 2; st.time = ''; } else st.error = t('fail');
+    return renderBooking();
+  }
+  st.busy = false;
+  if (NOTIFY_OWNER_BOOKINGS) notifyOwner('📅 حجز جديد — ' + s.shopName, 'حجز جديد', [['المحل', s.shopName], ['رقم الحجز', id], ['الاسم', st.name], ['الهاتف', st.phone], ['الخدمة', svc.name], ['التاريخ', st.date], ['الوقت', st.time]], false);
+  const msg = lang === 'ar'
+    ? 'مرحباً، لقد حجزت موعداً ✅\nرقم الحجز: ' + id + '\nالاسم: ' + st.name + '\nالهاتف: ' + st.phone + '\nالخدمة: ' + svcName(svc) + ' (' + svc.price + ' ' + s.currency + ')\nالتاريخ: ' + st.date + '\nالوقت: ' + st.time
+    : 'Hello! I booked an appointment.\nRef: ' + id + '\nName: ' + st.name + '\nPhone: ' + st.phone + '\nService: ' + svc.name + ' (' + svc.price + ' ' + s.currency + ')\nDate: ' + st.date + '\nTime: ' + st.time;
+  st.result = { booking: { id, serviceName: svc.name, date: st.date, time: st.time }, msg, url: 'https://m.me/' + encodeURIComponent(msgrName(s.messenger)) + '?text=' + encodeURIComponent(msg) };
+  try { navigator.clipboard.writeText(msg); } catch (e) {}
+  renderBooking(); $('book').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+function renderDone(box) {
+  const b = st.result.booking, ar = lang === 'ar';
+  box.innerHTML = '<div class="success"><div class="check">✓</div><h3>' + t('done_title') + '</h3><p class="note">' + t('done_text') + ' <b style="color:var(--gold)">' + esc(b.id) + '</b></p>' +
+    '<div class="summary" style="text-align:start;white-space:pre-wrap;margin:14px 0">' + esc(st.result.msg) + '</div>' +
+    '<a class="btn messenger" id="msgr" href="' + esc(st.result.url) + '">💬 ' + t('open_messenger') + '</a>' +
+    '<button class="btn ghost" id="copyMsg" style="margin-top:10px;width:100%">📋 ' + (ar ? 'نسخ الرسالة' : 'Copy message') + '</button>' +
+    '<p class="note" id="cd"></p><p class="note">' + t('copy_hint') + '</p><button class="btn ghost" id="again" style="margin-top:14px;width:100%">' + t('new_booking') + '</button></div>';
+  clearInterval(window.redirTimer);
+  const url = st.result.url; let left = 8;
+  const stop = () => { clearInterval(window.redirTimer); const cd = $('cd'); if (cd) cd.textContent = ''; };
+  const tick = () => { const cd = $('cd'); if (!cd) return stop(); cd.textContent = (ar ? 'سنحوّلك إلى ماسنجر بعد ' + left + ' ثوانٍ…' : 'Redirecting to Messenger in ' + left + 's…'); if (left-- <= 0) { stop(); location.href = url; } };
+  tick(); window.redirTimer = setInterval(tick, 1000);
+  $('msgr').onclick = stop;
+  $('copyMsg').onclick = () => { stop(); try { navigator.clipboard.writeText(st.result.msg); toast(ar ? 'تم نسخ الرسالة ✓' : 'Message copied ✓'); } catch (e) {} };
+  box.querySelector('#again').onclick = async () => { stop(); resetSt(); try { await loadTaken(); } catch (e) {} renderBooking(); };
+}
+$('langBtn').onclick = () => { lang = lang === 'ar' ? 'en' : 'ar'; try { localStorage.setItem('barber_lang', lang); } catch (e) {} applyLang(); };
+const goDash = () => { const u = FB.auth && FB.auth.currentUser; if (u) openDash(u); else location.href = location.pathname; };
+$('backDash').onclick = goDash;
+
+/* ====================================================================
+   الجزء الثالث: لوحة الحلاق
+   ==================================================================== */
+let me = null, myUid = '', bk = [], unsub = null, blocked = [], firstSnap = true;
+const STATUS = { confirmed: 'مؤكد', completed: 'منجز', cancelled: 'ملغى' };
+const bdoc = id => FB.doc(FB.db, 'barbers', myUid, 'bookings', id);
+const meDoc = () => FB.doc(FB.db, 'barbers', myUid);
+
+const isOwnerUser = () => { const u = FB.auth && FB.auth.currentUser; return !!(u && u.email && u.email.toLowerCase() === OWNER_EMAIL.trim().toLowerCase()); };
+let unsubB = null, allBarbers = [], firstB = true;
+function stopOwner() { if (unsubB) { unsubB(); unsubB = null; } allBarbers = []; }
+function closeDash() { if (unsub) { unsub(); unsub = null; } stopOwner(); me = null; bk = []; }
+async function openDash(user) {
+  myUid = user.uid; show('loading'); $('loadMsg').textContent = '… جارٍ التحميل';
+  try {
+    const d = await FB.getDoc(meDoc());
+    if (!d.exists()) { $('loadMsg').innerHTML = 'لم نجد بيانات محلّك. <br><button class="btn small" id="lo2" style="margin-top:12px">خروج</button>'; $('lo2').onclick = () => FB.signOut(FB.auth); return; }
+    me = d.data(); me.settings = Object.assign({}, DEFAULTS.settings, me.settings);
+  } catch (e) { $('loadMsg').innerHTML = 'تعذّر تحميل بياناتك. تأكد من نشر قواعد Firestore.<br><button class="btn small" id="lo2" style="margin-top:12px">خروج</button>'; $('lo2').onclick = () => FB.signOut(FB.auth); return; }
+  show('dash'); window.scrollTo(0, 0);
+  const link = location.origin + location.pathname + '?b=' + me.slug;
+  $('shareLink').textContent = location.protocol === 'file:' ? location.href.split('?')[0] + '?b=' + me.slug : link;
+  $('adminLink').textContent = location.protocol === 'file:' ? 'index.html?admin' : location.origin + location.pathname + '?admin';
+  $('fileWarn').classList.toggle('hide', location.protocol !== 'file:');
+  $('viewSite').removeAttribute('target'); $('viewSite').setAttribute('href', '#');
+  $('viewSite').onclick = e => { e.preventDefault(); const sl = me.slug; resetSt(); closeDash(); openShop(sl); };
+  $('dName').textContent = me.settings.shopName || 'لوحة التحكم';
+  const owner = isOwnerUser(), stt = me.status || 'active';
+  $('tabBarbers').classList.toggle('hide', !owner);
+  $('sharePanel').classList.toggle('hide', stt !== 'active'); $('viewSite').classList.toggle('hide', stt !== 'active');
+  const sb = $('statusBar');
+  if (stt === 'active') sb.className = 'hide';
+  else {
+    sb.className = stt === 'pending' ? 'okmsg' : 'err'; sb.style.cssText = 'margin:0 0 14px;font-size:15px';
+    sb.innerHTML = (stt === 'pending' ? '⏳ حسابك <b>قيد المراجعة</b>. لن يظهر موقعك للزبائن حتى يوافق عليه المسؤول.' : (stt === 'rejected' ? '⛔ تم <b>رفض</b> طلب حسابك من المسؤول.' : '⛔ تم <b>إيقاف</b> حسابك من المسؤول.')) + (OWNER_MESSENGER ? '<br><a class="btn small" style="margin-top:10px;background:#0084ff;border-color:#0084ff;color:#fff" target="_blank" rel="noopener" href="https://m.me/' + encodeURIComponent(msgrName(OWNER_MESSENGER)) + '">💬 راسل المسؤول</a>' : '');
+  }
+  if (owner) startOwner(); else stopOwner();
+  renderServices(); renderSettings();
+  firstSnap = true;
+  if (unsub) unsub();
+  unsub = FB.onSnapshot(FB.collection(FB.db, 'barbers', myUid, 'bookings'), snap => {
+    bk = []; snap.forEach(x => bk.push(x.data()));
+    if (!firstSnap && snap.docChanges().some(c => c.type === 'added')) toast('🔔 حجز جديد!');
+    firstSnap = false; renderBookings();
+  }, () => {});
+}
+function toast(msg) { const d = document.createElement('div'); d.className = 'toast'; d.textContent = msg; document.body.appendChild(d); setTimeout(() => d.remove(), 4000); }
+$('copyLink').onclick = () => { try { navigator.clipboard.writeText($('shareLink').textContent); $('copyLink').textContent = 'تم النسخ ✓'; setTimeout(() => { $('copyLink').textContent = 'نسخ الرابط'; }, 2000); } catch (e) {} };
+$('logout').onclick = () => FB.signOut(FB.auth);
+
+function renderBookings() {
+  const today = dstr(new Date()), cur = esc(me.settings.currency);
+  const active = bk.filter(b => b.status !== 'cancelled');
+  const revenue = bk.filter(b => b.status === 'completed').reduce((s, b) => s + b.price, 0);
+  $('kpis').innerHTML = '<div><small>حجوزات اليوم</small><b>' + active.filter(b => b.date === today).length + '</b></div>' +
+    '<div><small>القادمة</small><b>' + active.filter(b => b.date >= today && b.status === 'confirmed').length + '</b></div>' +
+    '<div><small>إجمالي الحجوزات</small><b>' + bk.length + '</b></div><div><small>الإيرادات (المنجزة)</small><b>' + revenue + ' ' + cur + '</b></div>';
+  const fd = $('fDate').value, fs = $('fStatus').value;
+  const rows = bk.filter(b => (!fd || b.date === fd) && (!fs || b.status === fs)).sort((a, b) => (a.date + a.time).localeCompare(b.date + b.time));
+  $('bkBody').innerHTML = rows.length ? rows.map(b => '<tr><td>' + esc(b.id) + '</td><td>' + esc(b.name) + '</td><td dir="ltr">' + esc(b.phone) + '</td><td>' + esc(b.serviceName) + '<br><small style="color:var(--muted)">' + b.price + ' ' + cur + '</small></td><td>' + b.date + '<br><b>' + b.time + '</b></td><td><span class="pill ' + b.status + '">' + STATUS[b.status] + '</span></td>' +
+    '<td style="white-space:nowrap"><button class="btn small ghost" data-st="completed" data-id="' + b.id + '">✓ منجز</button> <button class="btn small danger" data-st="cancelled" data-id="' + b.id + '">إلغاء</button> <button class="btn small danger" data-del="' + b.id + '">🗑</button></td></tr>').join('')
+    : '<tr><td colspan="7" style="text-align:center;color:var(--muted)">لا توجد حجوزات</td></tr>';
+  document.querySelectorAll('[data-st]').forEach(b => { b.onclick = async () => {
+    const id = b.getAttribute('data-id'), status = b.getAttribute('data-st'), bo = bk.filter(x => x.id === id)[0];
+    try { await FB.updateDoc(bdoc(id), { status }); if (status === 'cancelled' && bo) { await freeUnits(bo); openNotify(bo); } } catch (e) { alert('تعذّر التحديث'); }
+  }; });
+  document.querySelectorAll('[data-del]').forEach(b => { b.onclick = async () => {
+    if (!confirm('حذف الحجز نهائياً؟')) return;
+    const id = b.getAttribute('data-del'), bo = bk.filter(x => x.id === id)[0];
+    try { if (bo) await freeUnits(bo); await FB.deleteDoc(bdoc(id)); } catch (e) { alert('تعذّر الحذف'); }
+  }; });
+}
+function intlPhone(p) { let d = String(p || '').replace(/\D/g, ''); if (d.startsWith('00')) d = d.slice(2); else if (d.startsWith('0')) d = '213' + d.slice(1); return d; }
+function openNotify(b) {
+  const link = $('shareLink').textContent, shopN = me.settings.shopName;
+  $('nMsg').value = 'مرحباً ' + b.name + '،\nنعتذر، تم إلغاء حجزك رقم ' + b.id + ' في ' + shopN + '\n(' + b.serviceName + ' — ' + b.date + ' الساعة ' + b.time + ').\nيمكنك حجز موعد جديد من هنا:\n' + link;
+  const upd = () => { const m = $('nMsg').value; $('nWa').href = 'https://wa.me/' + intlPhone(b.phone) + '?text=' + encodeURIComponent(m); $('nSms').href = 'sms:' + String(b.phone).replace(/[^\d+]/g, '') + '?body=' + encodeURIComponent(m); };
+  upd(); $('nMsg').oninput = upd;
+  $('nCopy').onclick = () => { try { navigator.clipboard.writeText($('nMsg').value); $('nCopy').textContent = 'تم ✓'; } catch (e) {} };
+  $('nCopy').textContent = 'نسخ'; $('notify').classList.remove('hide');
+}
+$('nClose').onclick = () => $('notify').classList.add('hide');
+async function freeUnits(b) { await Promise.all((b.takenIds || []).map(i => FB.deleteDoc(FB.doc(FB.db, 'taken', i)))); }
+$('fDate').onchange = renderBookings; $('fStatus').onchange = renderBookings;
+
+async function saveMe() { await FB.setDoc(meDoc(), { slug: me.slug, settings: me.settings, services: me.services }, { merge: true }); }
+function renderServices() {
+  $('svBody').innerHTML = me.services.map(s => '<tr><td><b>' + esc(s.name) + '</b><br><small style="color:var(--muted)">' + esc(s.nameAr) + '</small></td><td>' + s.price + ' ' + esc(me.settings.currency) + '</td><td>' + s.duration + ' د</td>' +
+    '<td style="white-space:nowrap"><button class="btn small ghost" data-edit="' + s.id + '">تعديل</button> <button class="btn small danger" data-rm="' + s.id + '">حذف</button></td></tr>').join('');
+  document.querySelectorAll('[data-edit]').forEach(b => { b.onclick = () => {
+    const s = me.services.filter(x => x.id === b.getAttribute('data-edit'))[0];
+    $('sId').value = s.id; $('sName').value = s.name; $('sNameAr').value = s.nameAr || ''; $('sPrice').value = s.price; $('sDur').value = s.duration; $('sDesc').value = s.description || '';
+    $('sName').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }; });
+  document.querySelectorAll('[data-rm]').forEach(b => { b.onclick = async () => { if (!confirm('حذف الخدمة؟')) return; me.services = me.services.filter(x => x.id !== b.getAttribute('data-rm')); try { await saveMe(); } catch (e) { alert('تعذّر الحفظ'); } renderServices(); }; });
+}
+const resetSvc = () => { ['sId', 'sName', 'sNameAr', 'sPrice', 'sDesc'].forEach(i => { $(i).value = ''; }); $('sDur').value = 30; };
+$('sReset').onclick = resetSvc;
+$('sSave').onclick = async () => {
+  const name = $('sName').value.trim(); if (!name) return alert('الاسم مطلوب');
+  const id = $('sId').value;
+  const obj = { id: id || 's' + uid8().toLowerCase(), name, nameAr: $('sNameAr').value.trim(), description: $('sDesc').value.trim(), price: Math.max(0, Number($('sPrice').value) || 0), duration: Math.max(5, parseInt($('sDur').value) || 30) };
+  const i = me.services.findIndex(x => x.id === id);
+  if (i >= 0) me.services[i] = obj; else me.services.push(obj);
+  try { await saveMe(); } catch (e) { return alert('تعذّر الحفظ'); }
+  resetSvc(); renderServices();
+};
+const FIELDS = ['shopName', 'tagline', 'taglineAr', 'messenger', 'phone', 'address', 'currency', 'openTime', 'closeTime', 'slotMinutes', 'barbers', 'maxDaysAhead', 'color'];
+function renderSettings() {
+  const s = me.settings;
+  FIELDS.forEach(f => { $(f).value = s[f]; });
+  $('closedDays').innerHTML = DAYS.ar.map((d, i) => '<label><input type="checkbox" value="' + i + '" ' + (s.closedWeekdays.indexOf(i) >= 0 ? 'checked' : '') + '>' + d + '</label>').join('');
+  blocked = (s.blockedDates || []).slice(); renderBlocked();
+}
+function renderBlocked() {
+  $('blkList').innerHTML = blocked.map(d => '<span class="tag">' + d + '<button data-b="' + d + '">✕</button></span>').join('');
+  document.querySelectorAll('[data-b]').forEach(b => { b.onclick = () => { blocked = blocked.filter(x => x !== b.getAttribute('data-b')); renderBlocked(); }; });
+}
+$('blkAdd').onclick = () => { const v = $('blkDate').value; if (v && blocked.indexOf(v) < 0) { blocked.push(v); blocked.sort(); renderBlocked(); } $('blkDate').value = ''; };
+$('setSave').onclick = async () => {
+  const s = me.settings;
+  ['shopName', 'tagline', 'taglineAr', 'phone', 'address', 'currency'].forEach(f => { s[f] = $(f).value.trim(); });
+  s.messenger = msgrName($('messenger').value); s.color = $('color').value || '#c9a24b';
+  if ($('openTime').value) s.openTime = $('openTime').value;
+  if ($('closeTime').value) s.closeTime = $('closeTime').value;
+  s.slotMinutes = Math.max(5, Math.min(120, parseInt($('slotMinutes').value) || 30));
+  s.barbers = Math.max(1, Math.min(20, parseInt($('barbers').value) || 1));
+  s.maxDaysAhead = Math.max(1, Math.min(365, parseInt($('maxDaysAhead').value) || 30));
+  s.closedWeekdays = Array.prototype.map.call(document.querySelectorAll('#closedDays input:checked'), i => Number(i.value));
+  s.blockedDates = blocked.slice();
+  const m = $('setMsg');
+  try { await saveMe(); m.textContent = 'تم الحفظ ✓'; m.className = 'okmsg'; $('dName').textContent = s.shopName; } catch (e) { m.textContent = 'تعذّر الحفظ'; m.className = 'err'; }
+};
+$('pwSave').onclick = async () => {
+  const m = $('setMsg'), u = FB.auth.currentUser, o = $('oldPw').value, n = $('newPw').value;
+  const bad = t => { m.textContent = t; m.className = 'err'; };
+  if (!o) return bad('اكتب كلمة السر الحالية.');
+  if (n.length < 6) return bad('كلمة السر الجديدة 6 أحرف على الأقل.');
+  try {
+    await FB.reauthenticateWithCredential(u, FB.EmailAuthProvider.credential(u.email, o));
+    await FB.updatePassword(u, n);
+    $('oldPw').value = ''; $('newPw').value = ''; m.textContent = 'تم تغيير كلمة السر ✓'; m.className = 'okmsg';
+  } catch (e) { bad(e && (e.code === 'auth/invalid-credential' || e.code === 'auth/wrong-password') ? 'كلمة السر الحالية خاطئة.' : authErr(e)); }
+};
+$('chPass').onclick = async () => {
+  const m = $('setMsg'), email = FB.auth.currentUser && FB.auth.currentUser.email;
+  try { await FB.sendPasswordResetEmail(FB.auth, email); m.textContent = 'أرسلنا رابط تغيير كلمة السر إلى ' + email + ' ✓ (قد يصل خلال دقائق؛ راجع مجلد Spam / غير المرغوب فيه)'; m.className = 'okmsg'; } catch (e) { m.textContent = authErr(e); m.className = 'err'; }
+};
+document.querySelectorAll('#dash .tab').forEach(tb => { tb.onclick = () => {
+  document.querySelectorAll('#dash .tab').forEach(x => x.classList.toggle('on', x === tb));
+  ['bookings', 'services', 'settings', 'barbers'].forEach(n => $('tab-' + n).classList.toggle('hide', n !== tb.getAttribute('data-tab')));
+}; });
+
+/* ====================================================================
+   الجزء الرابع: لوحة المسؤول (أنت): قبول / إيقاف / حذف الحلاقين
+   ==================================================================== */
+const BST = { pending: 'قيد المراجعة', active: 'مفعّل', suspended: 'موقوف', rejected: 'مرفوض' }, BCLS = { pending: 'confirmed', active: 'completed', suspended: 'cancelled', rejected: 'cancelled' };
+function startOwner() {
+  stopOwner(); firstB = true;
+  unsubB = FB.onSnapshot(FB.collection(FB.db, 'barbers'), snap => {
+    allBarbers = []; snap.forEach(x => allBarbers.push(Object.assign({ uid: x.id }, x.data())));
+    if (!firstB && snap.docChanges().some(c => c.type === 'added' && (c.doc ? c.doc.data().status : 'pending') === 'pending')) toast('🆕 حلاق جديد يطلب التفعيل');
+    firstB = false; renderBarbers();
+  }, () => {});
+}
+function renderBarbers() {
+  const st = b => b.status || 'active', n = k => allBarbers.filter(b => st(b) === k).length;
+  $('pendBadge').textContent = n('pending') ? '(' + n('pending') + ')' : '';
+  $('bKpis').innerHTML = '<div><small>كل الحلاقين</small><b>' + allBarbers.length + '</b></div><div><small>قيد المراجعة</small><b>' + n('pending') + '</b></div><div><small>مفعّلون</small><b>' + n('active') + '</b></div><div><small>موقوفون</small><b>' + n('suspended') + '</b></div>';
+  const order = { pending: 0, suspended: 1, rejected: 1, active: 2 };
+  const rows = allBarbers.slice().sort((a, b) => (order[st(a)] - order[st(b)]) || String(b.createdAt || '').localeCompare(String(a.createdAt || '')));
+  $('bList').innerHTML = rows.length ? rows.map(b => {
+    const s = b.settings || {}, me1 = b.uid === myUid, stt = st(b);
+    return '<div class="panel" style="padding:14px"><div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start"><div><b style="font-size:17px">' + esc(s.shopName) + '</b>' + (me1 ? ' <small style="color:var(--muted)">(أنت)</small>' : '') +
+      '<div dir="ltr" style="color:var(--muted);font-size:13px;text-align:start">/' + esc(b.slug) + '</div></div><span class="pill ' + BCLS[stt] + '">' + BST[stt] + '</span></div>' +
+      '<div class="note" style="margin-top:8px">📞 <span dir="ltr">' + esc(s.phone || '—') + '</span> · 💬 <a href="https://m.me/' + encodeURIComponent(msgrName(s.messenger)) + '" target="_blank" rel="noopener" style="color:#4aa3ff" dir="ltr">' + esc(s.messenger || '') + '</a> · 📅 ' + esc(String(b.createdAt || '').slice(0, 10) || '—') + '</div>' +
+      '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">' + (stt !== 'active' ? '<button class="btn small" data-ba="active" data-u="' + b.uid + '">✓ ' + (stt === 'pending' ? 'قبول' : 'تفعيل') + '</button>' : '') +
+      (stt === 'pending' && !me1 ? '<button class="btn small danger" data-ba="rejected" data-u="' + b.uid + '">✕ رفض</button>' : '') +
+      (stt === 'active' && !me1 ? '<button class="btn small danger" data-ba="suspended" data-u="' + b.uid + '">⏸ إيقاف</button>' : '') +
+      '<button class="btn small ghost" data-bv="' + b.uid + '">👁 الحجوزات</button>' + (stt === 'active' ? '<button class="btn small ghost" data-bo="' + b.uid + '">🔗 موقعه</button>' : '') +
+      (me1 ? '' : '<button class="btn small danger" data-bd="' + b.uid + '">🗑 حذف</button>') + '</div></div>';
+  }).join('') : '<div class="panel" style="text-align:center;color:var(--muted)">لا يوجد حلاقون</div>';
+  const by = u => allBarbers.filter(x => x.uid === u)[0];
+  document.querySelectorAll('[data-ba]').forEach(b => { b.onclick = async () => {
+    const uid2 = b.getAttribute('data-u'), ns = b.getAttribute('data-ba');
+    try {
+      await FB.updateDoc(FB.doc(FB.db, 'barbers', uid2), { status: ns });
+      if (ns === 'active' || ns === 'rejected') {
+        try {
+          const c = await FB.getDoc(FB.doc(FB.db, 'contacts', uid2)), cd = c.exists() ? c.data() : null;
+          if (cd && cd.email) {
+            const ok = ns === 'active';
+            const sent = await sendMail(cd.email, ok ? '✅ تم قبول حسابك' : 'بخصوص طلب حسابك', ok ? 'تم قبول حسابك' : 'نعتذر، تم رفض طلب حسابك', [['المحل', cd.shopName || ''], ['رابط موقعك', ok ? location.origin + location.pathname + '?b=' + cd.slug : '—']], false);
+            toast(sent ? 'تم تحديث الحالة وإرسال بريد للحلاق ✓' : 'تم تحديث الحالة (لم يُرسل بريد — راجع إعداد EmailJS)');
+          }
+        } catch (e2) {}
+      }
+    } catch (e) { alert('تعذّر التحديث'); }
+  }; });
+  document.querySelectorAll('[data-bo]').forEach(b => { b.onclick = () => { const x = by(b.getAttribute('data-bo')); resetSt(); closeDash(); openShop(x.slug); }; });
+  document.querySelectorAll('[data-bv]').forEach(b => { b.onclick = async () => {
+    const x = by(b.getAttribute('data-bv')); $('bvTitle').textContent = 'حجوزات ' + ((x.settings || {}).shopName || '');
+    $('bvBody').innerHTML = '<tr><td colspan="6">… جارٍ التحميل</td></tr>'; $('bkView').classList.remove('hide');
+    try {
+      const snap = await FB.getDocs(FB.collection(FB.db, 'barbers', x.uid, 'bookings')), list = []; snap.forEach(d => list.push(d.data()));
+      list.sort((a, c) => (a.date + a.time).localeCompare(c.date + c.time));
+      $('bvBody').innerHTML = list.length ? list.map(r => '<tr><td>' + esc(r.id) + '</td><td>' + esc(r.name) + '</td><td dir="ltr">' + esc(r.phone) + '</td><td>' + esc(r.serviceName) + '</td><td>' + r.date + '<br><b>' + r.time + '</b></td><td><span class="pill ' + r.status + '">' + STATUS[r.status] + '</span></td></tr>').join('') : '<tr><td colspan="6" style="text-align:center;color:var(--muted)">لا توجد حجوزات</td></tr>';
+    } catch (e) { $('bvBody').innerHTML = '<tr><td colspan="6">تعذّر التحميل</td></tr>'; }
+  }; });
+  document.querySelectorAll('[data-bd]').forEach(b => { b.onclick = async () => {
+    const x = by(b.getAttribute('data-bd'));
+    if (!confirm('حذف حساب "' + ((x.settings || {}).shopName || '') + '" وكل حجوزاته نهائياً؟')) return;
+    try {
+      const snap = await FB.getDocs(FB.collection(FB.db, 'barbers', x.uid, 'bookings')), list = []; snap.forEach(d => list.push(d.data()));
+      for (const r of list) { await Promise.all((r.takenIds || []).map(i => FB.deleteDoc(FB.doc(FB.db, 'taken', i)))); await FB.deleteDoc(FB.doc(FB.db, 'barbers', x.uid, 'bookings', r.id)); }
+      await FB.deleteDoc(FB.doc(FB.db, 'barbers', x.uid)); await FB.deleteDoc(FB.doc(FB.db, 'slugs', x.slug));
+      toast('تم حذف الحلاق');
+    } catch (e) { alert('تعذّر الحذف'); }
+  }; });
+}
+$('bvClose').onclick = () => $('bkView').classList.add('hide');
+
+boot();
+
+</script>
+</body>
+</html>
+
+</body></html>
